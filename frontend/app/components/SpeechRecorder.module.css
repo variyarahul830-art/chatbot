@@ -1,0 +1,151 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.buttonRecord,
+.buttonStop,
+.buttonCancel {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.buttonRecord {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.buttonRecord:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.buttonRecord:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.buttonStop {
+  background: #ff6b6b;
+  color: white;
+}
+
+.buttonStop:hover:not(:disabled) {
+  background: #ff5252;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+}
+
+.buttonStop:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.buttonCancel {
+  background: #868e96;
+  color: white;
+  padding: 8px 12px;
+}
+
+.buttonCancel:hover {
+  background: #748187;
+}
+
+.modeToggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #666;
+  cursor: pointer;
+  user-select: none;
+}
+
+.modeToggle input {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+
+.modeLabel {
+  font-weight: 500;
+}
+
+.feedback {
+  padding: 10px 12px;
+  background: #e3f2fd;
+  border-left: 4px solid #2196f3;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #1565c0;
+  animation: slideIn 0.3s ease;
+}
+
+.error {
+  padding: 10px 12px;
+  background: #ffebee;
+  border-left: 4px solid #f44336;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #c62828;
+  animation: slideIn 0.3s ease;
+}
+
+.loading {
+  padding: 10px 12px;
+  background: #fff3e0;
+  border-left: 4px solid #ff9800;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #e65100;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .controls {
+    gap: 6px;
+  }
+
+  .buttonRecord,
+  .buttonStop,
+  .buttonCancel {
+    padding: 7px 12px;
+    font-size: 13px;
+  }
+}

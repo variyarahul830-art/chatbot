@@ -1,0 +1,95 @@
+/**
+ * API Service - Uses Backend Endpoints
+ * All requests go through: Frontend → Backend → Hasura
+ * Backend handles JWT verification and data isolation
+ */
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+
+/**
+ * Get authorization header with JWT token
+ */
+function getAuthHeader() {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    console.warn('⚠️ No authentication token found in localStorage');
+  }
+  return {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  };
+}
+
+/**
+ * Handle API errors
+ */
+function handleError(response) {
+  if (!response.ok) {
+    if (response.status === 401) {
+      console.error('❌ 401 Unauthorized - Authentication failed. Token may be expired.');
+      // Clear invalid token
+      localStorage.removeItem('token');
+      localStorage.removeItem('user_id');
+      // Force redirect to login
+      if (typeof window !== 'undefined') {
+        window.location.href = '/login';
+      }
+    }
+    throw new Error(`API Error: ${response.status} ${response.statusText}`);
+  }
+  return response.json();
+}
+
+// ============== SESSIONS ==============
+
+export async function getSessions() {
+  const response = await fetch(`${API_BASE_URL}/api/sessions/`, {
+    method: 'GET',
+    headers: getAuthHeader(),
+  });
+  return handleError(response);
+}
+
+export async function getSession(sessionId) {
+  const response = await fetch(`${API_BASE_URL}/api/sessions/${sessionId}`, {
+    method: 'GET',
+    headers: getAuthHeader(),
+  });
+  return handleError(response);
+}
+
+export async function createSession(title = 'New Chat') {
+  const response = await fetch(`${API_BASE_URL}/api/sessions/`, {
+    method: 'POST',
+    headers: getAuthHeader(),
+    body: JSON.stringify({ title }),
+  });
+  return handleError(response);
+}
+
+export async function updateSession(sessionId, title) {
+  const response = await fetch(`${API_BASE_URL}/api/sessions/${sessionId}`, {
+    method: 'PUT',
+    headers: getAuthHeader(),
+    body: JSON.stringify({ title }),
+  });
+  return handleError(response);
+}
+
+export async function deleteSession(sessionId) {
+  const response = await fetch(`${API_BASE_URL}/api/sessions/${sessionId}`, {
+    method: 'DELETE',
+    headers: getAuthHeader(),
+  });
+  return handleError(response);
+}
+
+// ============== MESSAGES ==============
+
+export async function getMessages(sessionId) {
+  const response = await fetch(`${API_BASE_URL}/api/sessions/${sessionId}/messages`, {
+    method: 'GET',
+    headers: getAuthHeader(),
+  });
+  return handleError(response);
+}
