@@ -1,0 +1,163 @@
+.logo {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: middle;
+  transition: opacity 200ms ease-out;
+}
+
+.logo:hover {
+  opacity: 0.8;
+}
+
+.logo:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Size variants */
+.size-sm {
+  width: 16px;
+  height: 16px;
+}
+
+.size-md {
+  width: 24px;
+  height: 24px;
+}
+
+.size-lg {
+  width: 32px;
+  height: 32px;
+}
+
+.size-xl {
+  width: 40px;
+  height: 40px;
+}
+
+/* Animation: Node pulsing effect */
+@keyframes nodePulse {
+  0% {
+    r: 1.5px;
+    opacity: 0.8;
+  }
+  50% {
+    r: 2.2px;
+    opacity: 1;
+  }
+  100% {
+    r: 1.5px;
+    opacity: 0.8;
+  }
+}
+
+.nodePulse {
+  animation: nodePulse 2s ease-in-out infinite;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .nodePulse {
+    animation: none;
+    opacity: 1;
+  }
+
+  .logo {
+    transition: none;
+  }
+}
+
+/* Dark mode colors */
+@media (prefers-color-scheme: dark) {
+  .logo {
+    --brain-color: #818cf8;
+    --neural-color: #06b6d4;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .logo {
+    --brain-color: #4f46e5;
+    --neural-color: #0891b2;
+  }
+}
+
+/* Logo container */
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px;
+  border-radius: 6px;
+  transition: background-color 200ms ease-out;
+}
+
+.logoContainer:hover {
+  background-color: rgba(79, 70, 229, 0.08);
+}
+
+/* Variant: default */
+.variant-default {
+  color: var(--color-text-primary);
+}
+
+/* Variant: minimal */
+.variant-minimal {
+  gap: 4px;
+}
+
+/* Text labels */
+.textMd {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.textLg {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+/* Accessibility */
+.logo[role='img'] {
+  outline: 0;
+}
+
+/* Print styles */
+@media print {
+  .logo {
+    filter: grayscale(1);
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: more) {
+  .logo:hover {
+    opacity: 1;
+    filter: drop-shadow(0 0 2px var(--color-primary));
+  }
+
+  .logoContainer:hover {
+    background-color: rgba(79, 70, 229, 0.15);
+    box-shadow: inset 0 0 0 1px var(--color-primary);
+  }
+}
+
+/* Forced colors mode (Windows High Contrast) */
+@media (forced-colors: active) {
+  .logo {
+    forced-color-adjust: none;
+    stroke: CanvasText;
+    fill: CanvasText;
+  }
+
+  .logoContainer {
+    border: 1px solid CanvasText;
+  }
+}

@@ -1,0 +1,247 @@
+/* WidgetLogo.module.css */
+/* Professional AI-themed logo component styling */
+
+/* CSS Custom Properties for theming */
+:root {
+  --logo-primary: #3b82f6;
+  --logo-primary-dark: #1e40af;
+  --logo-accent: #06b6d4;
+  --logo-accent-light: #22d3ee;
+  --logo-bg: transparent;
+  --logo-text-color: #1f2937;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --logo-primary: #60a5fa;
+    --logo-primary-dark: #3b82f6;
+    --logo-accent: #0891b2;
+    --logo-accent-light: #06b6d4;
+    --logo-text-color: #f3f4f6;
+  }
+}
+
+/* ============================================
+   Icon-only logo sizing
+   ============================================ */
+
+.logoIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--logo-bg);
+  border-radius: 8px;
+  flex-shrink: 0;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logoIcon:hover {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+@media (prefers-color-scheme: dark) {
+  .logoIcon:hover {
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+  }
+}
+
+/* Pulse animation for animated variant */
+.logoIcon.animate .svgContainer,
+.logoContainer.animate .svgContainer {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+/* Size variations for icon */
+.icon-sm {
+  width: 16px;
+  height: 16px;
+}
+
+.icon-md {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-lg {
+  width: 32px;
+  height: 32px;
+}
+
+/* Extended sizes for full logo visibility */
+.icon-xlg {
+  width: 48px;
+  height: 48px;
+}
+
+.icon-xxl {
+  width: 64px;
+  height: 64px;
+}
+
+/* ============================================
+   Full logo with text styling
+   ============================================ */
+
+.logoContainer {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--logo-bg);
+  border-radius: 8px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+}
+
+.logoContainer:hover {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+  transform: translateY(-2px);
+}
+
+@media (prefers-color-scheme: dark) {
+  .logoContainer:hover {
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+  }
+}
+
+.logoContainer:active {
+  transform: translateY(0);
+}
+
+/* Logo sizing - full version */
+.logo-sm {
+  font-size: 14px;
+  gap: 6px;
+  padding: 6px 10px;
+}
+
+.logo-sm .svgContainer {
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+}
+
+.logo-md {
+  font-size: 16px;
+  gap: 8px;
+  padding: 8px 12px;
+}
+
+.logo-md .svgContainer {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+}
+
+.logo-lg {
+  font-size: 18px;
+  gap: 10px;
+  padding: 10px 14px;
+}
+
+.logo-lg .svgContainer {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+}
+
+/* ============================================
+   SVG Container
+   ============================================ */
+
+.svgContainer {
+  display: block;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  transition: all 0.2s ease-out;
+}
+
+.logoIcon .svgContainer {
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================
+   Logo Text
+   ============================================ */
+
+.logoText {
+  font-weight: 600;
+  color: var(--logo-text-color);
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+  transition: color 0.2s ease-out;
+}
+
+@media (prefers-color-scheme: dark) {
+  .logoText {
+    color: var(--logo-text-color);
+  }
+}
+
+/* ============================================
+   Focus/Accessibility states
+   ============================================ */
+
+.logoIcon:focus-visible,
+.logoContainer:focus-visible {
+  outline: 2px solid var(--logo-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ============================================
+   Animation support
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .logoIcon,
+  .logoContainer,
+  .svgContainer {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Pulsing animation keyframes */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* ============================================
+   Responsive behavior
+   ============================================ */
+
+@media (max-width: 640px) {
+  .logoContainer {
+    padding: 6px 10px;
+  }
+
+  .logo-md .svgContainer {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+  }
+
+  .logoText {
+    font-size: 14px;
+  }
+}
+
+/* ============================================
+   Print styles
+   ============================================ */
+
+@media print {
+  .logoIcon,
+  .logoContainer {
+    filter: none !important;
+    transform: none !important;
+  }
+}
